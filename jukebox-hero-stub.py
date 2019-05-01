@@ -61,7 +61,13 @@ def printCatalogStats(song):
     print("Songs: "+ str(len(songs)))
 
     sumOfTime = sum(totalTime)
-    print("Time in Seconds: "+ str(sumOfTime))
+    seconds = int(sumOfTime % 60)
+    sumOfTime = (sumOfTime - seconds) / 60
+    minutes = int(sumOfTime % 60)
+    sumOfTime = (sumOfTime - minutes) / 60
+    hours = int(sumOfTime % 24)
+    day = int((sumOfTime - hours) / 24)
+    print("Total Time: "+ str(day) + ":" + "{:02d}:{:02d}:{:02d}".format(hours,minutes,seconds))
 
 
 #
@@ -81,7 +87,7 @@ def printSong(song):
     time = int(songArray[3])
     seconds = time % 60
     minutes = int((time - seconds)/60)
-    print("-------------------------------------\nArtist: " + songArray[0] + "\nAlbum: " + songArray[1] + "\nTitle: " + songArray[2] + "\nDuration: " + str(minutes) + ":" + str(seconds))
+    print("-------------------------------------\nArtist: " + songArray[0] + "\nAlbum: " + songArray[1] + "\nTitle: " + songArray[2] + "\nDuration: " + "{:02d}:{:02d}".format(minutes,seconds))
 
 #
 # Component One - Implement the printMenu() function here
@@ -134,7 +140,7 @@ while True:
             printSong(i)
 
     elif userInput == "q":
-        exit()
+        break
        
 
 ##Implement (Q)uit Option
