@@ -15,7 +15,7 @@ songs = []
 totalTime = []
 
 
-#   
+#
 # Parameter
 #   inputfile - A String with the name of a text file to convert to a Lit
 #
@@ -43,7 +43,7 @@ def printCatalogStats(song):
     albums.append(songArray[1])
     songs.append(songArray[2])
     totalTime.append(int(songArray[3]))
-    
+
 
 #
 # Component Three - Implement findSongs() function here
@@ -52,8 +52,8 @@ def findSongs(songQuery):
     for i in songList:
         if songQuery in i.lower():
             printSong(i)
-    
-    
+
+
 #
 # Component Two - Implement printSong() function here
 #
@@ -94,7 +94,7 @@ while True:
             print("Oops! Wrong letter! Try again.")
     if userInput == "m":
         printMenu()
-              
+
     elif userInput == "l":
         print("Please enter a file name ending in .csv:")
         fileName = input()
@@ -104,19 +104,29 @@ while True:
         print("Please enter the word or terms you're searching for:")
         userSearch = input()
         findSongs(userSearch)
-        
+
 
     elif userInput == "a":
         for i in songList:
             printCatalogStats(i)
 
         artists = list(dict.fromkeys(artists))
-        print("Artists: "+ len(artists))
+        print("Artists: "+ str(len(artists)))
+
+        albums = list(dict.fromkeys(albums))
+        print("Albums: "+ str(len(albums)))
+
+        songs = list(dict.fromkeys(songs))
+        print("Songs: "+ str(len(songs)))
+
+        sumOfTime = sum(totalTime)
+        print("Time in Seconds: "+ str(sumOfTime))
+
 
     elif userInput == "p":
         for i in songList:
             printSong(i)
-        
+
     elif userInput == "q":
         break
 
@@ -145,5 +155,3 @@ while True:
 # Component One - Program ends here
 #
 print("Leaving Jukebox Hero...  Goodbye!")
-
-
