@@ -38,11 +38,30 @@ def getListFromFile (inputFile):
 # Component Four - Implement printCatalogStats() function here
 #
 def printCatalogStats(song):
-    songArray = song.split(",")
-    artists.append(songArray[0])
-    albums.append(songArray[1])
-    songs.append(songArray[2])
-    totalTime.append(int(songArray[3]))
+    global artists
+    global albums
+    global songs
+    global totalTime
+    
+    for i in song:
+        songArray = i.split(",")
+        artists.append(songArray[0])
+        albums.append(songArray[1])
+        songs.append(songArray[2])
+        totalTime.append(int(songArray[3]))
+        
+
+    artists = list(dict.fromkeys(artists))
+    print("Artists: "+ str(len(artists)))
+
+    albums = list(dict.fromkeys(albums))
+    print("Albums: "+ str(len(albums)))
+
+    songs = list(dict.fromkeys(songs))
+    print("Songs: "+ str(len(songs)))
+
+    sumOfTime = sum(totalTime)
+    print("Time in Seconds: "+ str(sumOfTime))
 
 
 #
@@ -107,20 +126,7 @@ while True:
 
 
     elif userInput == "a":
-        for i in songList:
-            printCatalogStats(i)
-
-        artists = list(dict.fromkeys(artists))
-        print("Artists: "+ str(len(artists)))
-
-        albums = list(dict.fromkeys(albums))
-        print("Albums: "+ str(len(albums)))
-
-        songs = list(dict.fromkeys(songs))
-        print("Songs: "+ str(len(songs)))
-
-        sumOfTime = sum(totalTime)
-        print("Time in Seconds: "+ str(sumOfTime))
+        printCatalogStats(songList)
 
 
     elif userInput == "p":
@@ -128,7 +134,8 @@ while True:
             printSong(i)
 
     elif userInput == "q":
-        break
+        exit()
+       
 
 ##Implement (Q)uit Option
 ##Exit the selection menu loop when the user enters “q”
